@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Purchase Complete!</title>
+</head>
+<body>
+
+    <div style="background-color: rgba(111, 197, 212, 0.178); text-align: center; padding: 10px;">
+        <h2><h2 style="background-color: rgb(111, 197, 212); text-align: center; margin: 0; padding: 10px;">Purchase Complete!</h2>
+    </div>
+
+    <h3>Your Cart</h3>
+    <table border="1" style="width: 100%; border-collapse: collapse; background-color: white;">
+        <tr style="background-color: rgb(111, 197, 212); text-align: center;">
+            <th>Order #</th>
+            <th>Seller</th>
+            <th>Title</th>
+            <th>Price</th>
+        </tr>
+        {% for item in cart_items %}
+        <tr style="text-align: center;">
+            <td>{{ item[3] }}</td>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>${{ '%.2f'|format(item[2]) }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <p><strong>Subtotal: ${{ '%.2f'|format(subtotal) }}</strong></p>
+    <p><strong>Tax (8%): ${{ '%.2f'|format(tax) }}</strong></p>
+    <p><strong>Total: ${{ '%.2f'|format(total) }}</strong></p>
+
+    <form method="POST">
+        <input type="submit" name="action" value="Go Back to Home">
+    </form>
+
+</body>
+</html>
